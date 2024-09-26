@@ -1,12 +1,22 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import React, { FC } from 'react'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import CustomSafeAreaView from '@components/global/CustomSafeAreaView'
 
-const CustomerLogin = () => {
+const CustomerLogin: FC = () => {
   return (
-    <View>
-      <Text>CustomerLogin</Text>
-    </View>
+    <GestureHandlerRootView style={styles.container}>
+        <CustomSafeAreaView>
+          <Text> Ahmed </Text>
+        </CustomSafeAreaView>
+    </GestureHandlerRootView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+})
 
 export default CustomerLogin
