@@ -4,9 +4,24 @@ import { Colors } from '@utils/Constants'
 import { screenHeight, screenWidth } from '@utils/Scaling'
 import Logo from '@assets/images/splash_logo.jpeg'
 import Geolocation from '@react-native-community/geolocation';
+import { useAuthStore } from '@state/authStore'
+import { tokenStorage } from '@state/storage'
+import { resetAndNavigate } from '@utils/NavigationUtils'
 
 const SplashScreen: FC = () => {
+  const { user, setUser } = useAuthStore();
 
+  const tokenCheck = async () => {
+    const accessToken = tokenStorage.getString('accessToken') as string;
+    const refreshToken = tokenStorage.getString('refreshToken') as string;
+    if (accessToken) {
+      
+    }
+    resetAndNavigate("CustomerLogin")
+    return false;
+  }
+
+  // location 
   useEffect(() => {
     const requestLocationPermission = async () => {
       try {
@@ -75,6 +90,7 @@ const SplashScreen: FC = () => {
         },
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
       );
+      tokenCheck();
     };
   
     requestLocationPermission();
