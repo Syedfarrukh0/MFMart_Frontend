@@ -20,8 +20,6 @@ const CustomerLogin: FC = () => {
 
       const newSequence = [...gestureSequence, direction].slice(-5)
       setGestureSequence(newSequence)
-      
-      console.log(newSequence)
 
       if (newSequence.join(' ') === 'up up down left right') {
         setGestureSequence([])
