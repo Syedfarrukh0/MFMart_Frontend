@@ -36,8 +36,9 @@ const Row:FC <{row: typeof imageData; rowIndex: number }> = ({row, rowIndex}) =>
         <View style={styles.row}>
             {
                 row.map((image, imageIndex)=>{
+                    const horizontalShift = rowIndex%2 === 0 ? -18 : 18
                     return (
-                        <View key={imageIndex} style={[styles.itemContainer]}>
+                        <View key={imageIndex} style={[styles.itemContainer, {transform: [{translateX: horizontalShift}]}]}>
                             <Image source={image} style={styles.image} />
                         </View>
                     )
