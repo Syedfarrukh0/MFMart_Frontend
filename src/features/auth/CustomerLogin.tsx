@@ -30,7 +30,7 @@ const CustomerLogin: FC = () => {
       }).start()
     }else{
       Animated.timing(animatedValue, {
-        toValue: -keyboardOffsetHeight * 0.84,
+        toValue: keyboardOffsetHeight * 0.1,
         duration: 1000,
         useNativeDriver: true,
       }).start()
@@ -119,11 +119,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 3,
   },
   phoneText: {
     marginLeft: 10,
-
   },
   content: {
     justifyContent: 'center',
