@@ -14,7 +14,7 @@ const CustomInput:FC<InputProps & React.ComponentProps<typeof TextInput>> = ({on
     return (
         <View style={styles.flexRow}>
             {left}
-            <TextInput {...props} style={styles.inputContainer} placeholderTextColor={'#ccc'} />
+            <TextInput autoFocus={true} {...props} style={styles.inputContainer} placeholderTextColor={'#ccc'} />
             <View style={styles.icon}>
                 {props.value?.length !== 0 && right && 
                     <TouchableOpacity onPress={onClear}>
