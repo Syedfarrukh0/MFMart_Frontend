@@ -30,7 +30,7 @@ const CustomerLogin: FC = () => {
       }).start()
     }else{
       Animated.timing(animatedValue, {
-        toValue: keyboardOffsetHeight * 0.1,
+        toValue: -keyboardOffsetHeight * 0.94,
         duration: 1000,
         useNativeDriver: true,
       }).start()
