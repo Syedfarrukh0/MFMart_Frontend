@@ -21,9 +21,9 @@ const DeliveryLogin: FC = () => {
     setLoading(true);
     try {
       const res = await deliveryLogin(email, password);
-      // console.log('ssaasd: ', res?.errorResponse?.errorData?.message)
+      console.log('ssaasd: ', res?.errorResponse)
       if (!res?.success) {
-        Alert.alert(res?.errorResponse?.errorData?.message);
+        Alert.alert(res?.errorResponse?.message);
         resetAndNavigate('DeliveryLogin');
         return;
       }
