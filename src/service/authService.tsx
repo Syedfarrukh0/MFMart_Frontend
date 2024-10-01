@@ -21,7 +21,7 @@ export const deliveryLogin = async (email: string, password: string) => {
     const {setUser} = useAuthStore.getState();
     setUser(deliveryPartner);
     // Return success response
-    return {success: true, data: deliveryPartner};
+    return {success: true, data: deliveryPartner} as any;
   } catch (error: any) {
     let errorResponse = {
       success: false,
@@ -57,19 +57,57 @@ export const customerLogin = async (phone: string) => {
     // Set user state
     const {setUser} = useAuthStore.getState();
     setUser(customer);
+    return {success: true, data: customer} as any;
   } catch (error: any) {
-    // Type assertion for better error logging
-    console.log('Login error: ', error);
+    let errorResponse = {
+      success: false,
+      message: 'An error occurred',
+      status: 0,
+      errorData: null,
+    };
+    if (error.response) {
+      // Server responded with a status code other than 2xx
+      errorResponse.status = error.response.status;
+      errorResponse.errorData = error.response.data;
+      errorResponse.message = error.response.data.message || 'Server Error';
+    } else if (error.request) {
+      // The request was made but no response was received
+      errorResponse.message = 'Network Error: No response from server';
+    } else {
+      // Something else happened
+      errorResponse.message = `Request error: ${error.message}`;
+    }
+    // Ensure error details are returned
+    return {errorResponse: errorResponse} as any;
   }
 };
 
 export const refetchUser = async (setUser: any) => {
   try {
     const res = await appAxios.get('/user');
-    setUser(res.data.user);
+    setUser(res?.data?.user);
+    return {success: true, data: res} as any;
   } catch (error: any) {
-    // Type assertion for better error logging
-    console.log('Login error: ', error);
+    let errorResponse = {
+      success: false,
+      message: 'An error occurred',
+      status: 0,
+      errorData: null,
+    };
+    if (error.response) {
+      // Server responded with a status code other than 2xx
+      errorResponse.status = error.response.status;
+      errorResponse.errorData = error.response.data;
+      errorResponse.message = error.response.data.message || 'Server Error';
+    } else if (error.request) {
+      // The request was made but no response was received
+      errorResponse.message = 'Network Error: No response from server';
+    } else {
+      // Something else happened
+      errorResponse.message = `Request error: ${error.message}`;
+    }
+    // Ensure error details are returned
+    return {errorResponse: errorResponse} as any;
   }
 };
 
