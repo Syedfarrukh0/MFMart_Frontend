@@ -4,35 +4,24 @@ import {tokenStorage} from '@state/storage';
 import {useAuthStore} from '@state/authStore';
 import {resetAndNavigate} from '@utils/NavigationUtils';
 import {appAxios} from './apiInterceptors';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
 
 export const deliveryLogin = async (email: string, password: string) => {
   try {
-    const res = await axios.post(
-      `${BASE_URL}/delivery/login`, 
-      { email, password },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        timeout: 5000, // Optional: set a timeout of 5 seconds
-      }
-    );
-    
+    const res = await axios.post(`${BASE_URL}/delivery/login`, {
+      email,
+      password,
+    });
     // Destructure tokens and delivery partner data
-    const { accessToken, refreshToken, deliveryPartner } = res.data;
-
+    const {accessToken, refreshToken, deliveryPartner} = res.data;
     // Store tokens
     tokenStorage.set('accessToken', accessToken);
     tokenStorage.set('refreshToken', refreshToken);
-
     // Set user state
-    const { setUser } = useAuthStore.getState();
+    const {setUser} = useAuthStore.getState();
     setUser(deliveryPartner);
-
     // Return success response
-    return { success: true, data: deliveryPartner };
-    
+    return {success: true, data: deliveryPartner};
   } catch (error: any) {
     let errorResponse = {
       success: false,
@@ -40,7 +29,6 @@ export const deliveryLogin = async (email: string, password: string) => {
       status: 0,
       errorData: null,
     };
-
     if (error.response) {
       // Server responded with a status code other than 2xx
       errorResponse.status = error.response.status;
@@ -53,9 +41,8 @@ export const deliveryLogin = async (email: string, password: string) => {
       // Something else happened
       errorResponse.message = `Request error: ${error.message}`;
     }
-
     // Ensure error details are returned
-    return { errorResponse: errorResponse } as any;
+    return {errorResponse: errorResponse} as any;
   }
 };
 
