@@ -55,7 +55,7 @@ export const deliveryLogin = async (email: string, password: string) => {
     }
 
     // Ensure error details are returned
-    return { errorResponse: errorResponse };
+    return { errorResponse: errorResponse } as any;
   }
 };
 

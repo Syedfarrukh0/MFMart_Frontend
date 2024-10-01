@@ -23,7 +23,7 @@ const DeliveryLogin: FC = () => {
       const res = await deliveryLogin(email, password);
       // console.log('ssaasd: ', res?.errorResponse?.errorData?.message)
       if (!res?.success) {
-        Alert.alert((res as { errorData?: { message?: string } })?.errorData?.message || 'An unknown error occurred');
+        Alert.alert(res?.errorResponse?.errorData?.message);
         resetAndNavigate('DeliveryLogin');
         return;
       }
