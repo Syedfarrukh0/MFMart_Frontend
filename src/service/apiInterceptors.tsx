@@ -19,11 +19,11 @@ appAxios.interceptors.request.use(async config => {
 appAxios.interceptors.response.use(
   res => res,
   async error => {
-    if (error.res && error.res.status === 401) {
+    if (error.response  && error.response .status === 401) {
       try {
         const newAccessToken = await refresh_tokens();
         if (newAccessToken) {
-          error.config.headers.Authorizaton = `Bearer ${newAccessToken}`;
+          error.config.headers.Authorization  = `Bearer ${newAccessToken}`;
           return axios(error.config);
         }
       } catch (error) {
@@ -31,7 +31,7 @@ appAxios.interceptors.response.use(
       }
     }
 
-    if (error.res && error.res.status !== 401) {
+    if (error.response  && error.response .status !== 401) {
       const errorMessage = error.res.data.message || 'Something went wrong';
       Alert.alert(errorMessage);
     }

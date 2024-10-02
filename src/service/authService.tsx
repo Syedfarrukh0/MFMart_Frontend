@@ -85,29 +85,14 @@ export const customerLogin = async (phone: string) => {
 export const refetchUser = async (setUser: any) => {
   try {
     const res = await appAxios.get('/user');
-    setUser(res?.data?.user);
-    return {success: true, data: res} as any;
-  } catch (error: any) {
-    let errorResponse = {
-      success: false,
-      message: 'An error occurred',
-      status: 0,
-      errorData: null,
-    };
-    if (error.response) {
-      // Server responded with a status code other than 2xx
-      errorResponse.status = error.response.status;
-      errorResponse.errorData = error.response.data;
-      errorResponse.message = error.response.data.message || 'Server Error';
-    } else if (error.request) {
-      // The request was made but no response was received
-      errorResponse.message = 'Network Error: No response from server';
+    // console.log('Response data: ', res.data); // Log the response data
+    if (res.data && res.data.user) {
+      setUser(res.data.user);
     } else {
-      // Something else happened
-      errorResponse.message = `Request error: ${error.message}`;
+      console.log('User data not found in the response');
     }
-    // Ensure error details are returned
-    return {errorResponse: errorResponse} as any;
+  } catch (error: any) {
+    console.log('Login error: ', error); // Keep logging the error
   }
 };
 
