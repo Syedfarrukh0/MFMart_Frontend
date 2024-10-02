@@ -11,7 +11,7 @@ const Notice:FC = () => {
     <View style={{height: NoticeHeight}}>
         <View style={styles.container}>
             <View style={styles.noticeContainer}>
-                <SafeAreaView style={{padding: 10}}>
+                <SafeAreaView style={{padding: 7}}>
                     <CustomText style={styles.heading} variants='h8' fontFamily={Fonts.SemiBold}>
                         It's raining near this location
                     </CustomText>

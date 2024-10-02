@@ -5,7 +5,7 @@ import Notice from '@components/dashboard/Notice';
 
 const NoticeAnimation:FC<{noticePosition: any; children: React.ReactElement}> = ({ noticePosition, children }) => {
 
-    const NOTICE_HEIGHT = -(NoticeHeight + 12)
+    const NOTICE_HEIGHT = -(NoticeHeight + 5)
 
   return (
     <View style={styles.container}>
@@ -18,7 +18,7 @@ const NoticeAnimation:FC<{noticePosition: any; children: React.ReactElement}> = 
             transform: [{
                 translateY: noticePosition.interpolate({
                     inputRange: [NOTICE_HEIGHT, 0],
-                    outputRange: [0, NOTICE_HEIGHT + 20],
+                    outputRange: [0, NoticeHeight + 5],
                 }),
             }],
             // marginTop: noticePosition.interpolate({
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
         width: '100%',
         zIndex: 999,
         position: 'absolute',
-
     },
     contentContainer: {
         flex: 1,

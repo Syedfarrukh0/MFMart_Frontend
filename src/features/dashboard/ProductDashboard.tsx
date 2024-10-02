@@ -4,9 +4,10 @@ import {useAuthStore} from '@state/authStore';
 import NoticeAnimation from './NoticeAnimation';
 import { NoticeHeight } from '@utils/Scaling';
 import Visuals from './Visuals';
-import { CollapsibleContainer, CollapsibleHeaderContainer, withCollapsibleContext } from '@r0b0t3d/react-native-collapsible';
+import { CollapsibleContainer, CollapsibleHeaderContainer, CollapsibleScrollView, withCollapsibleContext } from '@r0b0t3d/react-native-collapsible';
 import AnimatedHeader from './AnimatedHeader';
 import StickSearchBar from './StickSearchBar';
+import Content from '@components/dashboard/Content';
 
 const ProductDashboard = () => {
   // const {user} = useAuthStore();
@@ -52,6 +53,11 @@ const ProductDashboard = () => {
             />
             <StickSearchBar />
           </CollapsibleHeaderContainer>
+          
+          <CollapsibleScrollView nestedScrollEnabled style={styles.panelContainer} showsVerticalScrollIndicator={false}>
+          <Content />
+          </CollapsibleScrollView>
+
         </CollapsibleContainer>
       </>
     </NoticeAnimation>
