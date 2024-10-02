@@ -6,6 +6,7 @@ import { NoticeHeight } from '@utils/Scaling';
 import Visuals from './Visuals';
 import { CollapsibleContainer, CollapsibleHeaderContainer, withCollapsibleContext } from '@r0b0t3d/react-native-collapsible';
 import AnimatedHeader from './AnimatedHeader';
+import StickSearchBar from './StickSearchBar';
 
 const ProductDashboard = () => {
   // const {user} = useAuthStore();
@@ -49,6 +50,7 @@ const ProductDashboard = () => {
                 return () => clearTimeout(timeoutId);
               }}
             />
+            <StickSearchBar />
           </CollapsibleHeaderContainer>
         </CollapsibleContainer>
       </>
