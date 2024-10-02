@@ -14,6 +14,18 @@ const Content = () => {
             Grocery & Kitchen
         </CustomText>
         <CategoryContainer data={categories} />
+        <CustomText variants='h5' fontFamily={Fonts.SemiBold}>
+            Bestsellers
+        </CustomText>
+        <CategoryContainer data={categories} />
+        <CustomText variants='h5' fontFamily={Fonts.SemiBold}>
+            Snacks & Drinks
+        </CustomText>
+        <CategoryContainer data={categories} />
+        <CustomText variants='h5' fontFamily={Fonts.SemiBold}>
+            Home & Lifestyle
+        </CustomText>
+        <CategoryContainer data={categories} />
     </View>
   )
 }
