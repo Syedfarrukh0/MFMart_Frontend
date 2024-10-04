@@ -35,8 +35,7 @@ export const getProductsByCategoryId = async (id: string) => {
   try {
     const res = await axios.get(`${BASE_URL}/products/${id}`);
     // Return success response
-    console.log(res)
-    return {success: true, data: res} as any;
+    return {success: true, data: res.data} as any;
   } catch (error: any) {
     let errorResponse = {
       success: false,
