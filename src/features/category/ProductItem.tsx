@@ -4,6 +4,7 @@ import { screenHeight } from '@utils/Scaling';
 import CustomText from '@components/ui/CustomText';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Colors, Fonts } from '@utils/Constants';
+import UniversalAdd from '@components/ui/UniversalAdd';
 
 const ProductItem:FC<{item: any, index: number}> = ({item, index}) => {
     const isSecondColumn = index % 2 != 0;
@@ -29,6 +30,7 @@ const ProductItem:FC<{item: any, index: number}> = ({item, index}) => {
                         💵 {item.discountPrice}
                     </CustomText>
                 </View>
+                <UniversalAdd item={item} />
             </View>
         </View>
     </View>
