@@ -45,15 +45,30 @@ const CustomerLogin: FC = () => {
   const handelAuth = async () => {
     Keyboard.dismiss();
     setLoading(true);
+
     try {
-      await customerLogin(phoneNumber);
+      const res = await customerLogin(phoneNumber);
+      if (!res?.success) {
+        Alert.alert(res?.errorResponse?.message);
+        resetAndNavigate('CustomerLogin');
+        return;
+      }
       resetAndNavigate('ProductDashboard');
     } catch (error) {
-      Alert.alert('Login Failed');
-    }
-    finally {
+      Alert.alert('Login Faield');
+    } finally{
       setLoading(false);
     }
+
+    // try {
+    //   await customerLogin(phoneNumber);
+    //   resetAndNavigate('ProductDashboard');
+    // } catch (error) {
+    //   Alert.alert('Login Failed');
+    // }
+    // finally {
+    //   setLoading(false);
+    // }
   }
 
   const handelGesture = ({nativeEvent}: any) => {
