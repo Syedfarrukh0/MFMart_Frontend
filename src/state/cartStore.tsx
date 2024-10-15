@@ -26,6 +26,17 @@ export const useCartStore = create<CartStore>()(
         const existingItemIndex = currentCart.findIndex(
           cartItem => cartItem?._id === item?._id,
         );
+
+        // Sanitize the item to avoid circular references
+        const sanitizedItem = {
+          _id: item._id,
+          item: { // Include the item object
+              name: item.name,
+              price: item.price,
+          },
+          count: 1,
+      };
+
         // when item exist
         if (existingItemIndex >= 0) {
           const updatedCart = [...currentCart];
@@ -35,7 +46,8 @@ export const useCartStore = create<CartStore>()(
           };
           set({cart: updatedCart});
         } else {
-          set({cart: [...currentCart, {_id: item._id, item: item, count: 1}]});
+          set({ cart: [...currentCart, sanitizedItem] });
+          // set({cart: [...currentCart, {_id: item._id, item: item, count: 1}]});
         }
       },
       clearCart: () => set({cart: []}),

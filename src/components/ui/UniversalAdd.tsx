@@ -3,6 +3,8 @@ import React, { FC } from 'react'
 import { useCartStore } from '@state/cartStore'
 import { Colors, Fonts } from '@utils/Constants';
 import CustomText from './CustomText';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const UniversalAdd:FC <{item: any}> = ({item}) => {
 
@@ -12,12 +14,18 @@ const UniversalAdd:FC <{item: any}> = ({item}) => {
   return (
     <View style={[styles.container, {backgroundColor: count === 0 ? '#fff' : Colors.secondary}]}>
         {count === 0 ?
-            <Pressable onPress={(item)=>addItem(item)} style={styles.add}>
+            <Pressable onPress={()=>addItem(item)} style={styles.add}>
                 <CustomText variants='h9' fontFamily={Fonts.SemiBold} style={styles.addText}>Add</CustomText>
             </Pressable>
             :
-            <View>
-
+            <View style={styles.counterContainer}>
+                <Pressable onPress={()=>removeItem(item._id)}>
+                    <Icon name='minus' color={'#fff'} size={RFValue(13)} />
+                </Pressable>
+                <CustomText fontFamily={Fonts.SemiBold} style={styles.text} variants='h8'>{count}</CustomText>
+                <Pressable onPress={()=>addItem(item)}>
+                    <Icon name='plus' color={'#fff'} size={RFValue(13)} />
+                </Pressable>
             </View>
         }
     </View>
@@ -41,7 +49,18 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
     },
     addText: {
-        
+        color: Colors.secondary,
+    },
+    counterContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
+        paddingHorizontal: 4,
+        paddingVertical: 6,
+        justifyContent: 'space-between'
+    },
+    text: {
+        color: '#fff',
     }
 })
 
