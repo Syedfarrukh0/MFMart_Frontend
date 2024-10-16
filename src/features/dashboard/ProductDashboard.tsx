@@ -27,6 +27,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { Fonts } from '@utils/Constants';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Ionicons';
+import withCart from '@features/cart/WithCart';
 
 const ProductDashboard:FC = () => {
   // const {user} = useAuthStore();
@@ -134,4 +135,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withCollapsibleContext(ProductDashboard);
+export default withCart(withCollapsibleContext(ProductDashboard));

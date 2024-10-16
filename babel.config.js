@@ -13,6 +13,7 @@ module.exports = {
           '@components': './src/components', 
           '@state': './src/state', 
           '@utils': './src/utils', 
+          '@styles': './src/styles', 
         }
       }
     ]

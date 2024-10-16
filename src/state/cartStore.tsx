@@ -30,10 +30,11 @@ export const useCartStore = create<CartStore>()(
         // Sanitize the item to avoid circular references
         const sanitizedItem = {
           _id: item._id,
-          item: { // Include the item object
-              name: item.name,
-              price: item.price,
-          },
+          // item: {
+          //     // name: item.name,
+          //     // price: item.price,
+          // },
+          item: item,
           count: 1,
       };
 
