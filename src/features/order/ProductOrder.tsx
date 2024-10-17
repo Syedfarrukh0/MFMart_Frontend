@@ -1,12 +1,30 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import React, { FC } from 'react'
+import { Colors } from '@utils/Constants'
+import CustomHeader from '@components/ui/CustomHeader'
+import OrderList from './OrderList'
 
-const ProductOrder = () => {
+const ProductOrder:FC = () => {
   return (
-    <View>
-      <Text>ProductOrder</Text>
+    <View style={styles.container}>
+        <CustomHeader title='Checkout' />
+        <ScrollView style={styles.scrollContainer}>
+            <OrderList />
+        </ScrollView>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff'
+    },
+    scrollContainer: {
+        backgroundColor: Colors.backgroundSecondary,
+        padding: 10,
+        paddingBottom: 250
+    }
+})
 
 export default ProductOrder
